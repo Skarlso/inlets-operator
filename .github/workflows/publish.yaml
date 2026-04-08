@@ -36,9 +36,9 @@ jobs:
         uses: self-actuated/hub-mirror@master
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+        uses: docker/setup-qemu-action@v4
       - name: Login to container Registry
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
@@ -46,7 +46,7 @@ jobs:
 
       - name: Release build
         id: release_build
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           outputs: "type=registry,push=true"
           platforms: linux/amd64,linux/arm64

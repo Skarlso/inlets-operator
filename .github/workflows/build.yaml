@@ -25,10 +25,10 @@ jobs:
         uses: self-actuated/hub-mirror@master
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+        uses: docker/setup-qemu-action@v4
       - name: Local build
         id: local_build
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           outputs: "type=docker,push=false"
           platforms: linux/amd64

@@ -1,5 +1,5 @@
 FROM --platform=${BUILDPLATFORM:-linux/amd64} ghcr.io/openfaas/license-check:0.4.1 as license-check
-FROM --platform=${BUILDPLATFORM:-linux/amd64} golang:1.25 as builder
+FROM --platform=${BUILDPLATFORM:-linux/amd64} golang:1.26 as builder
 
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
@@ -22,16 +22,16 @@ COPY go.mod go.mod
 COPY go.sum go.sum
 RUN go mod download
 
-COPY pkg  pkg
-COPY main.go  main.go
-COPY image_test.go  image_test.go
-COPY controller.go  controller.go
-COPY validate.go validate.go
-COPY validate_test.go validate_test.go
-COPY config.go  config.go
-COPY config_test.go  config_test.go
-COPY userdata.go userdata.go
-COPY userdata_test.go userdata_test.go
+COPY pkg                pkg
+COPY main.go            main.go
+COPY image_test.go      image_test.go
+COPY controller.go      controller.go
+COPY validate.go        validate.go
+COPY validate_test.go   validate_test.go
+COPY config.go          config.go
+COPY config_test.go     config_test.go
+COPY userdata.go        userdata.go
+COPY userdata_test.go   userdata_test.go
 
 RUN gofmt -l -d $(find . -type f -name '*.go' -not -path "./vendor/*")
 
